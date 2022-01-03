@@ -9,5 +9,26 @@ pipeline {
                   sh script: 'mvn clean package'
             }
         }
+        stage('Upload War To Nexus'){
+            steps{
+                nexusArtifactUploader artifacts:[
+                   [
+                        artifactId: 'test',
+                       classifier: '',
+                       file: '/var/lib/jenkins/jobs/job-A/config.xml',
+                      type: 'war'
+                 ]
+             ],
+                   credentialsId: '55fbea54-a538-400d-beb6-4821c1796c5b',
+                   groupId: 'test',
+                   nexusUrl: '3.111.33.177:8081',
+                   nexusVersion: 'nexus3',
+                   protocol: 'http',
+                   repository: 'maven-snapshots',
+                   version: '1.0-SNAPSHOT'
+  
+            }
+        }
+    
         }
         }
