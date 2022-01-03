@@ -19,7 +19,7 @@ pipeline {
                       type: 'war'
                  ]
              ],
-                   credentialsId: '55fbea54-a538-400d-beb6-4821c1796c5b',
+                   credentialsId: '55553f91-4598-4b56-9839-f53a6554d908',
                    groupId: 'test',
                    nexusUrl: '3.111.33.177:8081',
                    nexusVersion: 'nexus3',
