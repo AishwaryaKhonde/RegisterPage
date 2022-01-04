@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    tools {
+         maven 'maven3'
+    }
+    stages{
+        stage('Build'){
+            steps{
+                  sh script: 'mvn clean package'
+            }
+        }
+        stage('Upload War To Nexus'){
+            steps{
+                nexusArtifactUploader artifacts:[
+                   [
+                        artifactId: 'test',
+                       classifier: '',
+                       file: '/var/lib/jenkins/jobs/job-A/config.xml',
+                      type: 'war'
+                 ]
+             ],
+                   credentialsId: '55553f91-4598-4b56-9839-f53a6554d908',
+                   groupId: 'test',
+                   nexusUrl: '3.111.33.177:8081',
+                   nexusVersion: 'nexus3',
+                   protocol: 'http',
+                   repository: 'maven-snapshots',
+                   version: '1.0-SNAPSHOT'
+  
+            }
+        }
+    
+        }
+        }
